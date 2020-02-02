@@ -1,2 +1,3 @@
+import 'bootstrap/dist/css/bootstrap.css'
 import './index.scss'
-console.log("我是首页!!!!!!!");
+console.log($(document.body))

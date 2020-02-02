@@ -1,4 +1,5 @@
 const path = require("path");
+const webpack = require("webpack");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const miniCssExtractPlugin = require("mini-css-extract-plugin");
 const HappyPack = require("happypack"); //!优化loader的处理时间！！！！！！！！
@@ -12,9 +13,31 @@ module.exports = {
   module: {
     rules: [
       {
+        test: require.resolve("jquery"),
+        loader: "expose-loader?$!expose-loader?jQuery"
+      },
+      // {
+      //   test: /\.css$/,
+      //   include: path.resolve(__dirname, "./src"),
+      //   use: ["happypack/loader?id=css"]
+      // },
+      // { test: /\.css$/, loader: "style-loader!css-loader" },
+      {
         test: /\.css$/,
-        include: path.resolve(__dirname, "./src"),
-        use: ["happypack/loader?id=css"]
+        use: [
+          miniCssExtractPlugin.loader,
+          "css-loader"
+        ]
+      },
+      { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file-loader" },
+      { test: /\.(woff|woff2)$/, loader: "url-loader?prefix=font/&limit=5000" },
+      {
+        test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+        loader: "url-loader?limit=10000&mimetype=application/octet-stream"
+      },
+      {
+        test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+        loader: "url-loader?limit=10000&mimetype=image/svg+xml"
       },
       {
         test: /\.png$/,
@@ -51,31 +74,30 @@ module.exports = {
   },
   resolve: {
     modules: [path.resolve(__dirname, "./node_modules")],
-    alias: {
-      react: path.resolve(
-        __dirname,
-        "./node_modules/react/umd/react.production.min.js"
-      ),
-      "react-dom": path.resolve(
-        __dirname,
-        "./node_modules/react-dom/umd/react-dom.production.min.js"
-      )
-    },
-    extensions: ["js"]
+    extensions: [".js"]
   },
   optimization: {
     splitChunks: {
       chunks: "all", // 所有的 chunks 代码公共的部分分离出来成为一个单独的文件,
       name: true,
       cacheGroups: {
-        xxx: {
-          test: /react|react-dom/,
-          name: "react"
+        jquery: {
+          test: /jquery|jquery.min/,
+          name: "jquery"
         },
-        yyy: {
+        bootstrap: {
+          test: /bootstrap|bootstrap.min|bootstrap.css/,
+          name: "bootstrap"
+        },
+        lodash: {
           test: /lodash/,
           name: "lodash"
         }
+        // other: {
+        //   name: "other",
+        //   minSize: 3000,
+        //   minChunks: 1
+        // }
       }
     }
   },
@@ -105,6 +127,12 @@ module.exports = {
     }),
     new miniCssExtractPlugin({
       filename: "css/[name]_[contenthash:6].css"
+    }),
+    new webpack.ProvidePlugin({
+      $: "jquery",
+      jQuery: "jquery",
+      "window.$": "jquery",
+      "window.jQuery": "jquery"
     })
   ]
 };

@@ -18,7 +18,7 @@ module.exports.setMpa = () => {
       new htmlWebpacklPugin({
         template: path.join(__dirname, `../src/pages/${pageName}/index.html`),
         filename: `${pageName}.html`,
-        chunks: [pageName],
+        chunks: [pageName,"jquery","bootstrap","vendors"],
         // minify: {
         //   // 压缩HTML文件
         //   removeComments: true, // 移除HTML中的注释

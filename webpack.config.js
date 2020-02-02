@@ -1,12 +1,11 @@
+const htmlWebpackPlugin = require("html-webpack-plugin");
 const webpack = require("webpack");
 const path = require("path");
 const baseConig = require("./webpack.base.js");
 const merge = require("webpack-merge");
 const { DllReferencePlugin } = require("webpack");
 const AddAssetHtmlWebpackPlugin = require("add-asset-html-webpack-plugin");
-const {setMpa} = require("./config/index.js");
 
-const { htmlwebpackplugins } = setMpa();
 const devConfig = {
   mode: "development",
   output: {
@@ -14,11 +13,9 @@ const devConfig = {
     filename: "js/[name]_[hash:6].js"
   },
   devtool: "cheap-module-eval-source-map",
-  // optimization: {
-  //   splitChunks: {
-  //     chunks: "all", // 所有的 chunks 代码公共的部分分离出来成为一个单独的文件,
-  //   }
-  // },
+  optimization: {
+    usedExports: true // 哪些导出的模块被使用了，再做打包
+  },
   watch: true,
   watchOptions: {
     //默认为空，不监听的文件或者目录，支持正则
@@ -42,13 +39,18 @@ const devConfig = {
   },
 
   plugins: [
-    ...htmlwebpackplugins,
-    // new AddAssetHtmlWebpackPlugin({
-    //   filepath: path.resolve(__dirname, "./dll/react.dll.js") // 对应的 dll 文件路径
-    // }),
-    // new DllReferencePlugin({
-    //   manifest: require("./dll/react-manifest.json")
-    // }),
+    new htmlWebpackPlugin({
+      title: "京东商城",
+      template: "./index.html",
+      filename: "index.html"
+    }),
+    new AddAssetHtmlWebpackPlugin({
+      filepath: path.resolve(__dirname, "./dll/react.dll.js") // 对应的 dll 文件路径
+    }),
+    new DllReferencePlugin({
+      manifest: require("./dll/react-manifest.json")
+    }),
+
     new webpack.HotModuleReplacementPlugin()
   ]
 };
