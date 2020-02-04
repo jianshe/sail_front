@@ -1,7 +1,7 @@
 const path = require("path");
 const webpack = require("webpack");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const miniCssExtractPlugin = require("mini-css-extract-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HappyPack = require("happypack"); //!优化loader的处理时间！！！！！！！！
 var happyThreadPool = HappyPack.ThreadPool({ size: 5 });
 const { setMpa } = require("./config/index");
@@ -17,15 +17,26 @@ module.exports = {
         loader: "expose-loader?$!expose-loader?jQuery"
       },
       // {
-      //   test: /\.css$/,
-      //   include: path.resolve(__dirname, "./src"),
-      //   use: ["happypack/loader?id=css"]
+      //   test: /\.html$/,
+      //   use: [
+      //     {
+      //       loader: "html-loader",
+      //       options: {
+      //         arrts: ["img:src", "img:data-src"],
+      //         minimize: false //是否压缩html
+      //       }
+      //     }
+      //   ]
       // },
-      // { test: /\.css$/, loader: "style-loader!css-loader" },
       {
         test: /\.css$/,
         use: [
-          miniCssExtractPlugin.loader,
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath: "../"
+            }
+          },
           "css-loader"
         ]
       },
@@ -40,16 +51,24 @@ module.exports = {
         loader: "url-loader?limit=10000&mimetype=image/svg+xml"
       },
       {
-        test: /\.png$/,
-        include: path.resolve(__dirname, "./src"),
-        use: ["happypack/loader?id=Pics"]
+        test: /\.(png|jpe?g|gif|svg)$/,
+        loader: "url-loader",
+        options: {
+          limit: 8192,
+          name: "img/[name].[hash:7].[ext]"
+        }
       },
       {
         test: /\.less$/,
         include: path.resolve(__dirname, "./src"),
         // exclude:"./node_modules",
         use: [
-          miniCssExtractPlugin.loader,
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath: "../"
+            }
+          },
           "css-loader",
           "postcss-loader",
           "less-loader"
@@ -59,7 +78,12 @@ module.exports = {
         test: /\.scss$/,
         include: path.resolve(__dirname, "./src"),
         use: [
-          miniCssExtractPlugin.loader,
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath: "../"
+            }
+          },
           "css-loader",
           "postcss-loader",
           "sass-loader"
@@ -93,11 +117,6 @@ module.exports = {
           test: /lodash/,
           name: "lodash"
         }
-        // other: {
-        //   name: "other",
-        //   minSize: 3000,
-        //   minChunks: 1
-        // }
       }
     }
   },
@@ -108,24 +127,25 @@ module.exports = {
       loaders: ["style-loader", "css-loader"],
       threadPool: happyThreadPool
     }),
-    new HappyPack({
-      id: "Pics",
-      loaders: [
-        {
-          loader: "file-loader",
-          options: {
-            name: "images/[name].[ext]"
-          }
-        }
-      ],
-      threadPool: happyThreadPool
-    }),
+    // new HappyPack({
+    //   id: "Pics",
+    //   loaders: [
+    //     {
+    //       loader: "file-loader",
+    //       options: {
+    //         limit:500,
+    //         name: "images/[name].[ext]"
+    //       }
+    //     }
+    //   ],
+    //   threadPool: happyThreadPool
+    // }),
     new HappyPack({
       id: "babel",
       loaders: ["babel-loader"],
       threadPool: happyThreadPool
     }),
-    new miniCssExtractPlugin({
+    new MiniCssExtractPlugin({
       filename: "css/[name]_[contenthash:6].css"
     }),
     new webpack.ProvidePlugin({

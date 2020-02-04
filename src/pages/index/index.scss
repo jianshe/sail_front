@@ -1,3 +1,113 @@
-body {
-  background: pink;
+#layout-header {
+  border-bottom: 5px solid #0066cc;
+  .navbar-header {
+    min-height: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    .navbar-brand {
+      padding-left: 45px;
+      background-image: url("../../../assets/logo.png");
+      background-size: auto 75%;
+      background-repeat: no-repeat;
+      background-position: 10px 50%;
+      font-family: "微软雅黑";
+      font-size: 20px;
+      font-weight: bold;
+      color: #000;
+      letter-spacing: 6px;
+      .sub-title {
+        font-size: 12px;
+        letter-spacing: 1px;
+        color: #000;
+      }
+    }
+  }
+  .nav-con {
+    min-height: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-size: 14px;
+    .nav-item {
+      .nav-link {
+        color: #000;
+      }
+    }
+  }
+}
+
+.product-list {
+  .card {
+    border: none;
+    img {
+      width: 366px;
+      height: 260px;
+      border: 1px solid rgba(0, 0, 0, 0.125);
+    }
+    .card-title {
+      color: #7386ba;
+      font-size: 20px;
+    }
+    .card-text:last-child {
+      line-height: 24px;
+    }
+  }
+  .hot-products-title {
+    h2 {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+    em {
+      background-image: url("../../../assets/hot-products.jpg");
+      background-size: 100%;
+      background-repeat: no-repeat;
+      width: 100%;
+      display: block;
+      height: 28px;
+      transform: scale(0.5);
+    }
+    margin-bottom: 25px;
+  }
+}
+.recommend-container {
+  margin-bottom: 50px;
+}
+.recommend-article-list {
+  .card {
+    border: none;
+    img {
+      width: 244px;
+      height: 130px;
+      border: 1px solid rgba(0, 0, 0, 0.125);
+    }
+    .card-title {
+      color: #7386ba;
+      font-size: 20px;
+    }
+    .card-text:last-child {
+      line-height: 24px;
+    }
+  }
+  .recommend-article-title {
+    h2 {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+    em {
+      background-image: url("../../../assets/recommend-article.jpg");
+      background-size: 100%;
+      background-repeat: no-repeat;
+      width: 100%;
+      display: block;
+      height: 28px;
+      transform: scale(0.5);
+    }
+    margin-bottom: 25px;
+  }
 }

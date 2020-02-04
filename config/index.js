@@ -16,9 +16,12 @@ module.exports.setMpa = () => {
 
     htmlwebpackplugins.push(
       new htmlWebpacklPugin({
-        template: path.join(__dirname, `../src/pages/${pageName}/index.html`),
+        template:
+          "html-withimg-loader!" +
+          path.join(__dirname, `../src/pages/${pageName}/index.html`),
+
         filename: `${pageName}.html`,
-        chunks: [pageName,"jquery","bootstrap","vendors"],
+        chunks: [pageName, "jquery", "bootstrap", "vendors"]
         // minify: {
         //   // 压缩HTML文件
         //   removeComments: true, // 移除HTML中的注释

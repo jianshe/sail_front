@@ -10,6 +10,7 @@ const { htmlwebpackplugins } = setMpa();
 const devConfig = {
   mode: "development",
   output: {
+    publicPath:'./',
     path: path.resolve(__dirname, "./dist"),
     filename: "js/[name]_[hash:6].js"
   },

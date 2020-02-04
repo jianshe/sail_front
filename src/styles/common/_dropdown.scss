@@ -1,0 +1,29 @@
+.dropdown-menu {
+  margin-top: 0;
+  .dropdown-toggle {
+    &::after {
+      vertical-align: middle;
+      border-left: 4px solid;
+      border-bottom: 4px solid transparent;
+      border-top: 4px solid transparent;
+    }
+  }
+  .dropdown {
+    .dropdown-menu {
+      left: 100%;
+      top: 0%;
+    }
+  }
+  & > li {
+    &.show {
+      & > a {
+        color: white;
+      }
+    }
+  }
+}
+.dropdown-menu > li a:hover,
+.dropdown-menu > li.show {
+  background: #007bff;
+  color: white;
+}

@@ -9,6 +9,7 @@ const { htmlwebpackplugins } = setMpa();
 
 const proConfig = {
   output: {
+    publicPath:'./',
     path: path.resolve(__dirname, "./build"),
     filename: "js/[name]_[hash:6].js"
   },

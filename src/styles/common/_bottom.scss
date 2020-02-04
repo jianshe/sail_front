@@ -1,0 +1,22 @@
+.bottom {
+  .container-fluid {
+    padding-left: 50px;
+    background: #eff0f3;
+    padding-right: 50px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    .list-bottom-group {
+      margin-right: 5px;
+      .list-item {
+        color: #7b7b7b;
+        font-weight: bold;
+        font-size: 12px;
+        line-height: 30px;
+      }
+      .list-item.active {
+        color: #111;
+        font-size: 14px;
+      }
+    }
+  }
+}
