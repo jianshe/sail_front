@@ -27,3 +27,26 @@
   background: #007bff;
   color: white;
 }
+
+.nav-menu > li > a:hover{
+  color: #007bff !important;
+}
+.nav-menu > li > a.active {
+  color: #007bff !important;
+}
+.navbar-container {
+  max-width: 1200px !important;
+}
+@media (min-width: 796px){
+  .navbar-expand-lg {
+      -ms-flex-flow: row nowrap;
+      /* flex-flow: row nowrap; */
+      -ms-flex-pack: start;
+      /* justify-content: flex-start; */
+  }
+}
+@media (max-width: 762px){
+  .nav-item {
+    width: 100%;
+  }
+}
