@@ -1,58 +1,146 @@
-const htmlWebpackPlugin = require("html-webpack-plugin");
-const webpack = require("webpack");
 const path = require("path");
-const baseConig = require("./webpack.base.js");
-const merge = require("webpack-merge");
-const { DllReferencePlugin } = require("webpack");
-const AddAssetHtmlWebpackPlugin = require("add-asset-html-webpack-plugin");
+const webpack = require("webpack");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const HappyPack = require("happypack"); //!优化loader的处理时间！！！！！！！！
+var happyThreadPool = HappyPack.ThreadPool({ size: 5 });
+const { setMpa } = require("./config/index");
 
-const devConfig = {
-  mode: "development",
-  output: {
-    path: path.resolve(__dirname, "./dist"),
-    filename: "js/[name]_[hash:6].js"
+const { entry } = setMpa();
+
+module.exports = {
+  entry: entry,
+  module: {
+    rules: [
+      {
+        test: require.resolve("jquery"),
+        loader: "expose-loader?$!expose-loader?jQuery"
+      },
+      {
+        test: /\.(htm|html|art)$/i,
+        loader: "art-template-loader",
+        options: {
+          imports: require.resolve("art-template/lib/runtime")
+        }
+      },
+      {
+        test: /\.css$/,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath: "../"
+            }
+          },
+          "css-loader"
+        ]
+      },
+      { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file-loader" },
+      { test: /\.(woff|woff2)$/, loader: "url-loader?prefix=font/&limit=5000" },
+      {
+        test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+        loader: "url-loader?limit=10000&mimetype=application/octet-stream"
+      },
+      {
+        test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+        loader: "url-loader?limit=10000&mimetype=image/svg+xml"
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg)$/,
+        loader: "url-loader",
+        options: {
+          limit: 8192,
+          name: "img/[name].[hash:7].[ext]",
+          esModule: false
+        }
+      },
+      {
+        test: /\.less$/,
+        include: path.resolve(__dirname, "./src"),
+        // exclude:"./node_modules",
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath: "../"
+            }
+          },
+          "css-loader",
+          "postcss-loader",
+          "less-loader"
+        ]
+      },
+      {
+        test: /\.scss$/,
+        include: path.resolve(__dirname, "./src"),
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath: "../"
+            }
+          },
+          "css-loader",
+          "postcss-loader",
+          "sass-loader"
+        ]
+      },
+      {
+        test: /\.js$/,
+        include: path.resolve(__dirname, "./src"),
+        use: ["happypack/loader?id=babel"]
+      }
+    ]
   },
-  devtool: "cheap-module-eval-source-map",
+  resolve: {
+    modules: [path.resolve(__dirname, "./node_modules")],
+    extensions: [".js"]
+  },
   optimization: {
-    usedExports: true // 哪些导出的模块被使用了，再做打包
-  },
-  watch: true,
-  watchOptions: {
-    //默认为空，不监听的文件或者目录，支持正则
-    ignored: /node_modules/,
-    //监听到文件变化后，等300ms再去执行，默认300ms,
-    aggregateTimeout: 300,
-    //判断文件是否发生变化是通过不停的询问系统指定文件有没有变化，默认每秒问1次
-    poll: 1000 //ms
-  },
-  devServer: {
-    contentBase: path.resolve(__dirname, "./dist"),
-    open: true,
-    port: 8081,
-    hot: true,
-    hotOnly: true,
-    proxy: {
-      "/api": {
-        target: "http://localhost:9092"
+    splitChunks: {
+      chunks: "all", // 所有的 chunks 代码公共的部分分离出来成为一个单独的文件,
+      name: true,
+      cacheGroups: {
+        jquery: {
+          test: /jquery|jquery.min/,
+          name: "jquery"
+        },
+        bootstrap: {
+          test: /bootstrap|bootstrap.min|bootstrap.css/,
+          name: "bootstrap"
+        },
+        swiper: {
+          test: /swiper/,
+          name: "swiper"
+        },
+        default: {
+          minChunks: 2,
+          priority: -20,
+          reuseExistingChunk: true
+        }
       }
     }
   },
-
   plugins: [
-    new htmlWebpackPlugin({
-      title: "京东商城",
-      template: "./index.html",
-      filename: "index.html"
+    new CleanWebpackPlugin(),
+    new HappyPack({
+      id: "css",
+      loaders: ["style-loader", "css-loader"],
+      threadPool: happyThreadPool
     }),
-    new AddAssetHtmlWebpackPlugin({
-      filepath: path.resolve(__dirname, "./dll/react.dll.js") // 对应的 dll 文件路径
+    new HappyPack({
+      id: "babel",
+      loaders: ["babel-loader"],
+      threadPool: happyThreadPool
     }),
-    new DllReferencePlugin({
-      manifest: require("./dll/react-manifest.json")
+    new MiniCssExtractPlugin({
+      filename: "css/[name]_[contenthash:6].css"
     }),
-
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.ProvidePlugin({
+      $: "jquery",
+      jQuery: "jquery",
+      "window.$": "jquery",
+      "window.jQuery": "jquery"
+    })
   ]
 };
-
-module.exports = merge(baseConig, devConfig);

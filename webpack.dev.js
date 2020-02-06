@@ -1,4 +1,5 @@
 const webpack = require("webpack");
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const path = require("path");
 const baseConig = require("./webpack.base.js");
 const merge = require("webpack-merge");
@@ -50,6 +51,12 @@ const devConfig = {
     // new DllReferencePlugin({
     //   manifest: require("./dll/react-manifest.json")
     // }),
+    new OptimizeCSSAssetsPlugin({
+      cssProcessor: require("cssnano"), //引入cssnano配置压缩选项
+      cssProcessorOptions: {
+        discardComments: { removeAll: true }
+      }
+    }),
     new webpack.HotModuleReplacementPlugin()
   ]
 };

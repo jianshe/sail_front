@@ -3,9 +3,25 @@ import "../../util/bootnavbar.js";
 import "bootstrap/dist/css/bootstrap.css";
 import "../../styles/index.scss";
 import "./index.scss";
-import prdImg from "../../../assets/prd-img.png";
-import titBg from "../../../assets/bg-tit.png";
+import "swiper/css/swiper.css";
+import Swiper from "swiper";
 $(function() {
-  $("#img_test").attr("src", prdImg);
   $("#layout-header").bootnavbar();
+  new Swiper(".swiper-container", {
+    effect: "fade",
+    autoplay: {
+      disableOnInteraction: false,
+      delay: 2500
+    },
+    loop: true,
+    // 如果需要分页器
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+      dynamicBullets: true
+    },
+    fadeEffect: {
+      crossFade: true
+    }
+  });
 });

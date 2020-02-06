@@ -16,18 +16,13 @@ module.exports = {
         test: require.resolve("jquery"),
         loader: "expose-loader?$!expose-loader?jQuery"
       },
-      // {
-      //   test: /\.html$/,
-      //   use: [
-      //     {
-      //       loader: "html-loader",
-      //       options: {
-      //         arrts: ["img:src", "img:data-src"],
-      //         minimize: false //是否压缩html
-      //       }
-      //     }
-      //   ]
-      // },
+      {
+        test: /\.(htm|html|art)$/i,
+        loader: "art-template-loader",
+        options: {
+          imports: require.resolve("art-template/lib/runtime")
+        }
+      },
       {
         test: /\.css$/,
         use: [
@@ -55,7 +50,8 @@ module.exports = {
         loader: "url-loader",
         options: {
           limit: 8192,
-          name: "img/[name].[hash:7].[ext]"
+          name: "img/[name].[hash:7].[ext]",
+          esModule: false
         }
       },
       {
@@ -113,9 +109,21 @@ module.exports = {
           test: /bootstrap|bootstrap.min|bootstrap.css/,
           name: "bootstrap"
         },
-        lodash: {
-          test: /lodash/,
-          name: "lodash"
+        swiper: {
+          test: /swiper/,
+          name: "swiper"
+        },
+        utils: {
+          // 抽离自己写的公共代码，common这个名字可以随意起
+          chunks: "initial",
+          name: "common", // 任意命名
+          minSize: 0, // 只要超出0字节就生成一个新包
+          minChunks: 2
+        },
+        default: {
+          minChunks: 2,
+          priority: -20,
+          reuseExistingChunk: true
         }
       }
     }

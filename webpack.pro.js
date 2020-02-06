@@ -30,8 +30,8 @@ const proConfig = {
     new PurifyCSS({
       paths: glob.sync([
         // 要做 CSS Tree Shaking 的路径文件
-        path.resolve(__dirname, "./src/*.html"), // 请注意，我们同样需要对 html 文件进行 tree shaking
-        path.resolve(__dirname, "./src/*.js")
+        path.resolve(__dirname, "./src/pages/*/*.html"), // 请注意，我们同样需要对 html 文件进行 tree shaking
+        path.resolve(__dirname, "./src/pages/*/*.js")
       ])
     }),
     new OptimizeCSSAssetsPlugin({
