@@ -8,7 +8,7 @@
         background: #fff;
         background-image: url(../../assets/icon/db.png);
         background-repeat: no-repeat;
-        background-position: 95% 10px;
+        background-position: 95% 13px;
       }
       ul {
         overflow: hidden;
@@ -18,7 +18,10 @@
       &.rvnm-expandable {
         background-image: url(../../assets/icon/rb.png);
         background-repeat: no-repeat;
-        background-position: 95% 10px;
+        background-position: 95% 13px;
+      }
+      & a:hover{
+        color: #0066cc !important;
       }
     }
   }
@@ -96,20 +99,53 @@
 }
 .rvnm-navbar-box ul li a,
 .rvnm-navbar-box ul li a:visited {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 20px;
   display: block;
-  padding: 10px;
-  font-size: 16px;
+  font-size: 15px;
   color: #333366;
-  position: relative;
   overflow: hidden;
-  height: 45px;
-  -moz-box-sizing: border-box;
+  height: auto;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   line-height: 0.75em;
   overflow: hidden;
   width: 100%;
+  position: relative;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
 /*mobile mode*/
+
+
+.parent_menu {
+  .parent_menu_title {
+    color: #0066cc !important;
+    font-weight: 520;
+    font-size: 16px;
+  }
+  .active {
+    color: #0066cc !important;
+    &:before {
+      content: "";
+      background: url("../../assets/icon/small-cycle.png") no-repeat;
+      position: absolute;
+      top: 17px;
+      z-index: 2;
+      left: 5px;
+      width: 6px;
+      height: 6px;
+    }
+  }
+}
+.parent_menu:before {
+  content: "";
+  background: url("../../assets/icon/pillar.png") no-repeat;
+  position: absolute;
+  top: 10px;
+  z-index: 2;
+  left: -2px;
+  width: 6px;
+  height: 20px;
+}
