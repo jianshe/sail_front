@@ -1,0 +1,147 @@
+.container-fluid-header {
+  border-bottom: 5px solid #0066cc;
+  #layout-header {
+    .navbar-header {
+      min-height: 100px;
+      height: 100px;
+      display: flex;
+      align-items: center;
+      .navbar-brand {
+        padding-left: 66px;
+        background-image: url("../../assets/logo.png");
+        background-size: auto 100%;
+        background-repeat: no-repeat;
+        background-position: 10px 50%;
+        font-family: "微软雅黑";
+        font-size: 18px;
+        font-weight: bold;
+        color: #000;
+        letter-spacing: 6px;
+        .sub-title {
+          font-size: 12px;
+          letter-spacing: 1px;
+          color: #000;
+        }
+      }
+    }
+    .nav-con {
+      font-size: 14px;
+      font-weight: bold;
+      .nav-item {
+        margin-right: 15px;
+        .nav-link {
+          color: #000;
+        }
+      }
+    }
+  }
+}
+.page {
+  h3 {
+    font-size: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    color: #333399;
+    display: inline-block;
+    border-bottom: 1px solid #333399;
+  }
+  .nav {
+    margin-top: 20px;
+    border-left: 1px solid #e9f5fc;
+    .nav-link {
+      background: #fff;
+      color: #333366;
+      position: relative;
+      border: none;
+      &:hover {
+        color: #0066cc;
+      }
+    }
+    .active {
+      color: #0066cc;
+      &:before {
+        content: "";
+        background: url("../../assets/icon/pillar.png") no-repeat;
+        position: absolute;
+        top: 6px;
+        z-index: 2;
+        left: -3px;
+        width: 6px;
+        height: 20px;
+      }
+    }
+  }
+}
+.wrapper {
+  border-left: 1px solid #eee;
+  .breadcrumb {
+    padding-left: 60px;
+    border-bottom: 1px solid #eee;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 16px;
+    color: #666666;
+    background-color: #fff;
+    margin-bottom: 0;
+    .breadcrumb-title {
+      color: #006699;
+    }
+  }
+  .tab-content {
+    padding-left: 60px;
+    .wrapper-library-list {
+      margin-top: 50px;
+      .row {
+        margin-bottom: 50px;
+      }
+      .media {
+        .lt-time {
+          width: 64px;
+          height: 64px;
+          border-top-left-radius: 5px;
+          background: #0066cc;
+          /*flex 布局*/
+          display: flex;
+          /*实现垂直居中*/
+          align-items: center;
+          /*实现水平居中*/
+          justify-content: center;
+          margin: 0 auto;
+          text-align: justify;
+          .text {
+            margin-top: 3px;
+            p {
+              color: #fff;
+              line-height: 26px;
+            }
+            p.year {
+              font-size: 20px;
+            }
+            p.md {
+              font-size: 16px;
+            }
+          }
+        }
+        .media-body {
+          margin-left: 20px;
+          h5 {
+            a {
+              font-size: 22px;
+              color: #333399;
+              margin-bottom: 10px;
+              display: inline-block;
+            }
+          }
+          p {
+            a {
+              font-size: 16px;
+              color: #666;
+              line-height: 26px;
+              display: inline-block;
+            }
+          }
+        }
+      }
+    }
+  }
+}
