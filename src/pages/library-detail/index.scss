@@ -104,7 +104,7 @@
           margin-right: 10px;
         }
         .from {
-          color:#0066cc;
+          color: #0066cc;
         }
         .pub-date {
           font-size: 14px;
@@ -114,7 +114,7 @@
         width: 100%;
         height: 140px;
         background: #f4f5f8;
-        margin-bottom: 20px ;
+        margin-bottom: 20px;
         .content {
           .kd {
             background: url(../../assets/icon/kd.png) no-repeat;
@@ -139,9 +139,56 @@
         p {
           color: #333;
           font-size: 16px;
-          line-height: 30 px;
-          text-indent:2em;
+          line-height: 30px;
+          text-indent: 2em;
           margin-bottom: 20px;
+        }
+        .explore {
+          color: #999;
+          margin-bottom: 30px;
+        }
+      }
+      .other {
+        .list-group {
+          padding-bottom: 60px;
+          .list-group-item {
+            padding: 10px;
+            width: 50%;
+            border-bottom-left-radius: 0;
+            border-top-right-radius: 0;
+            border-top-left-radius: 0;
+            border-bottom-right-radius: 0;
+            a:hover {
+              p {
+                color: #0066cc;
+              }
+            }
+            &:first-child{
+              margin-right: 20px;
+            }
+            p {
+              font-size: 14px;
+              color: #333;
+              font-weight: bold;
+              letter-spacing: 1px;
+            }
+            .lt-bg {
+              color: #0066cc;
+              &:before {
+                content: "";
+                background: url("../../assets/icon/pillar.png") no-repeat;
+                position: absolute;
+                top: 6px;
+                z-index: 2;
+                left: -2px;
+                width: 3px;
+                height: 20px;
+              }
+            }
+          }
+          .list-group-item + .list-group-item {
+            border-left-width: 1px;
+          }
         }
       }
     }

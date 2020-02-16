@@ -8,6 +8,12 @@ import "swiper/css/swiper.css";
 import Swiper from "swiper";
 $(function() {
   $("#layout-header").bootnavbar();
+  $(
+    $("#layout-header")
+      .find(".nav-menu")
+      .children(".nav-item")[0]
+  ).addClass("active");
+
   $(window).scroll(function() {
     //小屏幕下的导航条折叠
     if ($(window).width() < 768) {

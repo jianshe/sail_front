@@ -6,4 +6,9 @@ import "../../styles/index.scss";
 import "./index.scss";
 $(function() {
   $("#layout-header").bootnavbar();
+  $(
+    $("#layout-header")
+      .find(".nav-menu")
+      .children(".nav-item")[6]
+  ).addClass("active");
 });

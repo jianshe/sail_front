@@ -8,7 +8,11 @@ import "./index.scss";
 import "./jquery-rvnm.scss";
 $(function() {
   $("#layout-header").bootnavbar();
-  var rvnMenu = $("#navbar").rvnm({
+  $(
+    $("#layout-header")
+      .find(".nav-menu")
+      .children(".nav-item")[1]
+  ).addClass("active");  var rvnMenu = $("#navbar").rvnm({
     //  mode: 'mobile',
     responsive: true,
     searchable: false

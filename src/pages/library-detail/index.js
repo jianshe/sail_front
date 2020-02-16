@@ -7,6 +7,11 @@ import "../../styles/index.scss";
 import "./index.scss";
 $(function() {
   $("#layout-header").bootnavbar();
+  $(
+    $("#layout-header")
+      .find(".nav-menu")
+      .children(".nav-item")[5]
+  ).addClass("active");
   $("#myTab a").on("click", function(e) {
     e.preventDefault();
     $(this).tab("show");
