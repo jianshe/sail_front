@@ -36,6 +36,23 @@
     }
   }
 }
+.img-con {
+  position: relative;
+  p {
+    position: absolute;
+    font-size: 30px;
+    color: #ffffff;
+    letter-spacing: 6px;
+    top: 50%;
+    left: 22%;
+    transform: translate(-50%, -22%);
+    -webkit-transform: translate(-50%, -22%);
+    -moz-transform: translate(-50%, -22%);
+    -ms-transform: translate(-50%, -22%);
+    -o-transform: translate(-50%, -22%);
+}
+}
+
 .page {
   h3 {
     font-size: 20px;

@@ -1,5 +1,4 @@
 .navbar {
-  padding: 0;
   .dropdown-menu {
     margin-top: 0;
     .dropdown-toggle {
@@ -46,7 +45,7 @@
     &::after {
       position: absolute;
       content: "";
-      top: 60px;
+      top: 68px;
       left: 3px;
       width: 100%;
       border-top-left-radius: 5px;

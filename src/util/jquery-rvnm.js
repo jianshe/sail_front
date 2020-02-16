@@ -202,23 +202,23 @@
                 }
             });
 
-            $(document).on('keyup mouseup change', '.rvnm-search', function (e) {
-                var word = $(this).val();
-                if (word.length == 0) {
-                    $(this).closest('ul').find('> li').show();
-                } else {
-                    $(this).closest('ul').find('> li').each(function () {
-                        if (!$(this).hasClass('search')) {
-                            $(this).show();
-                            var txt = $(this).text();
-                            if (txt.indexOf(word) == -1) {
-                                $(this).hide();
-                            }
-                        }
-                    });
-                    self.sizetrigger();
-                }
-            });
+            // $(document).on('keyup mouseup change', '.rvnm-search', function (e) {
+            //     var word = $(this).val();
+            //     if (word.length == 0) {
+            //         $(this).closest('ul').find('> li').show();
+            //     } else {
+            //         $(this).closest('ul').find('> li').each(function () {
+            //             if (!$(this).hasClass('search')) {
+            //                 $(this).show();
+            //                 var txt = $(this).text();
+            //                 if (txt.indexOf(word) == -1) {
+            //                     $(this).hide();
+            //                 }
+            //             }
+            //         });
+            //         self.sizetrigger();
+            //     }
+            // });
 
 
             // add click event to collapseable link 
@@ -263,11 +263,11 @@
                 $(this).removeClass('rvnm-minimal-expand');
             });
 
-            $(window).load(function () {
-                setTimeout(function () {
-                    self.sizetrigger();
-                }, 100);
-            });
+            // $(window).load(function () {
+            //     setTimeout(function () {
+            //         self.sizetrigger();
+            //     }, 100);
+            // });
 
         });
 

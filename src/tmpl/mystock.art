@@ -1,0 +1,53 @@
+<div class="content_top clearfix" style="margin: 0 5px;">
+        <div class="s_stock_name fl-l">
+            <span class="name">{{name}}({{code}})</span>
+            <span id="stock_status" class="font_red" style="display: none"></span>
+        </div>
+        <div id="rong_icon" class="rong fl-l" style="display: none;">融</div>
+        <div id="hgt_icon" class="hgt fl-l" style="display: none;">沪股通</div>
+        <div id="sgt_icon" class="hgt fl-l" style="display: none;">深股通</div>
+        <span class="s_stock_setting btnRef fl-l" style="display:none" tracker-eventcode="icbc.gghq.sx" tracker-extinfo=""  onclick="javascript: location.reload();">刷 新</span>
+    </div>
+    <div class="content_infos" style="margin: 0 5px; padding: 5px 0 0 0">
+        <table id="s_stock_table1" class="s_stock_table" cellpadding="0" cellspacing="0" border="0" width="100%">
+            <tbody>
+                <tr>
+                    <td style="padding-left: 20px;" id="xj_box">
+                        <span class="xj  {{getColor(zsj,xj)}}" >{{xj}}</span>
+                    </td>
+                    <td>开:<span class="jkj {{getColor(zsj,jkj)}}">{{jkj}}</span></td>
+                    <td>高:<span class="zgj {{getColor(zsj,zgj)}}" >{{zgj}}</span></td>
+                    <td>低:<span class="zdj {{getColor(zsj,zdj)}}">{{zdj}}</span></td>
+                </tr>
+                <tr>
+                    <td style="padding-left: 5px;" id="zd_box">
+                        <span class="zdf {{getColor(zsj,xj)}}">{{zdf}}</span>　<span class="zde {{getColor(zsj,xj)}}">{{zde}}</span>
+                    </td>
+                    <td>换:<span class="hsl">{{hsl}}</span></td>
+                    <td>量:<span class="cjl">{{getValueWithUnitForHK(cjl)}}</span></td>
+                    <td>额:<span class="cje">{{getValueWithUnitForHK(cje)}}</span></td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="s_stock_table_zz" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-bottom: 10px;">
+            <tbody>
+                <tr>
+                    <td>总值:<span class="zsz">{{getValueWithUnitForHK(zsz)}}</span></td>
+                    <td>流值:<span class="ltsz">{{getValueWithUnitForHK(ltsz)}}</span></td>
+                    <td>市盈:<span class="syl">{{getValueWithUnitForHK(syl)}}</span></td>
+                    <td style="width: 66px;">
+                        <a class="ALink">更多</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table id="abh_table" class="s_stock_table_zz s_stock_table_price" cellpadding="0" cellspacing="0" width="100%" style="display: none;">
+                <tr>
+                    <td>H股报价</td>
+                    <td class="font_green">--</td>
+                    <td class="font_green">--</td>
+                    <td>溢价(H/A):</td>
+                    <td>--</td>
+                </tr>
+            </table>
+    </div>

@@ -1,0 +1,46 @@
+{{if content && content !== null&& content !==''}}
+<div class="mbody_padding">
+    <div class="pagetitle">
+        <div class="atitle">{{title}}</div>
+        <div class="atime">
+            <div class="afrom">{{showTime}}&nbsp;&nbsp;&nbsp;来源 : {{source}}</div>
+        </div>
+    </div>
+    {{if description && description != null&& description !=''}}
+        <div class="article_digest"><div class="digest_tit">摘要</div><div class="digest_content">{{description}}</div><div class="space"></div></div>
+    {{/if}}
+        <article class="zwtext" id="zwtext">
+            {{@content}}
+        </article>
+    <div class="texteditor">编辑：东方财富网</div>
+</div>
+{{else}}
+    <div style="height: 170px;line-height:170px;text-align:center;color:#959595;">暂无数据</div>
+{{/if}}
+{{if relatedNewsArr && relatedNewsArr.length>0}}
+    <div class="mbody_padding">         
+        <!--相关新闻-->
+        <div class="xgnews">
+            <div class="xgnewst">相关新闻</div>
+            <ul>
+                {{each relatedNewsArr.slice(0,5) item index}}
+                    <li>
+                        <a href="{{'./news.html?id='+item.code}}">{{item.title}}</a>
+                    </li>
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+{{/if}}
+
+<!--评论-->
+<div class="mbody_padding">
+    <div id="all_hours">
+        
+    </div>
+    <div class="clear"></div>
+    <div class="has_show_all"></div>
+</div>
+<div class="clear"></div>
+<footer style="padding:0;">
+</footer>

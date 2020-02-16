@@ -1,0 +1,10 @@
+{{each $data item}}
+    <li>
+        <a href="./article.html?id={{item.infoCode}}">
+            <div class="news_main">
+                <div class="news_content">{{item.title}}</div>
+                <div class="news_time">{{item.publishDate}}</div>
+            </div>
+        </a>
+    </li>
+{{/each}}

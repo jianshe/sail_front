@@ -1,0 +1,13 @@
+{{if items && items.length>0}}
+<div class="clear"></div>
+<div class="point_rank">
+    <div class="xgnewst">24小时点击排行</div>
+    <ul>
+        {{each items.slice(0,5) item index}}
+            <li>
+                <a href="{{'./news.html?id=NW'+item.Art_Code}}">{{item.Art_Title}}</a>
+            </li>
+        {{/each}}
+    </ul>
+</div>
+{{/if}}

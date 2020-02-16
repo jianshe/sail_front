@@ -1,0 +1,29 @@
+<div class="t_ar_zhw" style="border-bottom: 0px;">
+    {{if content && content !== null&& content !==''}}
+    <div class="t_ar_content">
+        <div class="t_ar_content_t">
+            <div class="t_ar_content_title" id="article_title">{{title}}</div>
+        </div>
+        {{if urls && urls.length>0 && urls[0]!==null}}
+            {{each urls item index}}
+                <div><a href="{{setPdf(item)}}" class="look_pdf_top"><img src="./img/pdf.png" style="vertical-align: bottom;">点击查看PDF原文</a></div>
+            {{/each}}
+        {{/if}}
+        <div class="t_ar_content_c" id="article_text" style="word-break: break-all; word-wrap: break-word; ">
+            <p class="publishdate">公告日期：{{showTime}}</p>
+                <p style="line-height: 164.28%;">
+                    {{@content}}
+                </p>
+            <br>
+            {{if urls && urls.length>0 && urls[0]!==null}}
+                {{each urls item index}}
+                    <div><a href="{{setPdf(item)}}" style="color:Red"><b>[点击查看PDF原文]</b></a></div>
+                {{/each}}
+            {{/if}}
+            <p style="line-height: 164.28%;font-size:12px;padding-top: 12px;color:#999">提示：本网不保证其真实性和客观性，一切有关该股的有效信息，以交易所的公告为准，敬请投资者注意风险。</p>
+        </div>
+    </div>
+    {{else}}
+        <div style="height: 170px;line-height:170px;text-align:center;color:#959595;">暂无数据</div>
+    {{/if}}   
+</div>
