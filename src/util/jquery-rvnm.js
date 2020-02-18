@@ -47,40 +47,38 @@
             if (settings.responsive && settings.mode === 'default') {
                 // if window size between 450 and 768 active minimal
                 if ($(window).width() > 450 && $(window).width() < 768) {
-                    if (!$(self).hasClass('rvnm-minimal')) {
-                        // fix extended  after switch from defualt to minimal
-                        $(self).find('.rvnm-collapseable ul').attr('style', '');
-                        $(self).find('.rvnm-collapseable').addClass('rvnm-expandable').removeClass('rvnm-collapseable');
-                    }
-                    $(settings.wrapper).removeClass('rvnm-mobile');
-                    $(self).removeClass('rvnm-mobile');
-                    $(settings.wrapper).addClass('rvnm-minimal');
-                    $(self).addClass('rvnm-minimal');
+                    // if (!$(self).hasClass('rvnm-minimal')) {
+                    //     // fix extended  after switch from defualt to minimal
+                    //     $(self).find('.rvnm-collapseable ul').attr('style', '');
+                    //     $(self).find('.rvnm-collapseable').addClass('rvnm-expandable').removeClass('rvnm-collapseable');
+                    // }
+                    // $(settings.wrapper).removeClass('rvnm-mobile');
+                    // $(self).removeClass('rvnm-mobile');
+                    // $(settings.wrapper).addClass('rvnm-minimal');
+                    // $(self).addClass('rvnm-minimal');
                 }
                 // if window size less than 450 active mobile mode
                 if ($(window).width() <= 450) {
-                    $(settings.wrapper).removeClass('rvnm-minimal');
-                    $(self).removeClass('rvnm-minimal');
-                    $(settings.wrapper).addClass('rvnm-mobile');
-                    $(self).addClass('rvnm-mobile');
+                    // $(settings.wrapper).removeClass('rvnm-minimal');
+                    // $(self).removeClass('rvnm-minimal');
+                    // $(settings.wrapper).addClass('rvnm-mobile');
+                    // $(self).addClass('rvnm-mobile');
                 }
                 // if window size greater than 768 active desktop mode by
                 // remove minimal & mobile calss
                 if ($(window).width() >= 768) {
-                    $(settings.wrapper).removeClass('rvnm-minimal');
-                    $(self).removeClass('rvnm-minimal');
-                    $(settings.wrapper).removeClass('rvnm-mobile');
-                    $(self).removeClass('rvnm-mobile');
+                    // $(settings.wrapper).removeClass('rvnm-minimal');
+                    // $(self).removeClass('rvnm-minimal');
+                    // $(settings.wrapper).removeClass('rvnm-mobile');
+                    // $(self).removeClass('rvnm-mobile');
                 }
             }
-            $(".rvnm-navbar-box").css('height', '');
-            if (settings.mode !== 'mobile' && !$(self).hasClass('rvnm-mobile')) {
-                if ($(".rvnm-navbar-box").height() < $("body").height() || $(".rvnm-navbar-box").height() < $(window).height() || $(".rvnm-navbar-box").height() < $("html").height()) {
-                    $(".rvnm-navbar-box").height(Math.max($('body').height(), $(window).height(), $("html").height()));
-                }
-            }
-
-
+            // $(".rvnm-navbar-box").css('height', '');
+            // if (settings.mode !== 'mobile' && !$(self).hasClass('rvnm-mobile')) {
+            //     if ($(".rvnm-navbar-box").height() < $("body").height() || $(".rvnm-navbar-box").height() < $(window).height() || $(".rvnm-navbar-box").height() < $("html").height()) {
+            //         $(".rvnm-navbar-box").height(Math.max($('body').height(), $(window).height(), $("html").height()));
+            //     }
+            // }
         };
 
         // set plugn selector to self for use in other place of plugin
